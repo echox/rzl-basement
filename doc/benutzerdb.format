@@ -1,0 +1,123 @@
+// this is a first draft of the interface
+
+
+Accept: application/org.raumzeitlabor.benutzerdb-v1+json
+
+/
+{
+	"benutzerdb" : {
+		"link" : {
+			"rel" : "usermanagement"
+			"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
+			"href" : "users/"
+		}
+	}
+}
+
+/users
+{
+	"usermanagement" : {
+		"link" : {
+			"rel" : "search"
+			"type" : "text/html"
+			"href" : "users/search"
+		}
+	}
+}
+
+/users/search
+<form action="" method="POST" name="user-search">
+	<input type="text" name="nickname">
+	<input type="checkbox" name="contribution-receipt" value="contribution-receipt">
+</form>
+
+/users/search
+{
+	"users" : {
+		"user" : {
+			"nickname": foo
+			"link" : {
+				"rel" : "URI"
+				"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
+				"href" : "users/<id>"
+			}
+		}
+	}
+}
+
+/users/<id>
+{
+	"user" : {
+		"link" : {
+			"rel" : "self"
+			"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
+			"href" : "users/<id>"
+			},
+		"link" : {
+			"rel" : "self"
+			"type" : "application/vcard"
+			"href" : "users/<id>"
+			},
+		"link" : {
+			"rel" : "reset-password-mail"
+			"type" : "text/html"
+			"href" : "users/<id>/password"
+			},
+		"link" : {
+			"rel" : "pin"
+			"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
+			"href" : "pin/<id>/"
+			},
+		"link" : {
+			"rel" : "presence"
+			"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
+			"href" : "presence/<id>/..."
+			},			
+		"firstname" : "FIRSTNAME",
+		"lastname" : "LASTNAME",
+		"email" : "email",
+		"contribution-receipt" : true/false
+	}
+}
+
+/presence/<id>/
+{
+	"presence" : {
+		"present" : true/false
+		"link" : {
+			"rel" : "add-mac"
+			"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
+			"href" : "presence/<id>/..."
+			},
+		"macs": {
+			"link" : {
+				"rel" : "add-mac"
+				"type" : "text/html"
+				"href" : "presence/mac"
+				},	
+			"mac" : {
+				"name" : foobar,
+				"mac" : "11:22:33:44:55:66",
+				"link" : {
+					"rel" : "mac"
+					"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
+					"href" : "presence/mac/11-22-33-44-55-66"
+				}	
+			}
+		}
+	}
+}
+
+/presence/mac/11-22-33-44-55-66
+{
+	"link" : {
+		"rel" : "owner"
+		"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
+		"href" : /users/<id>
+	}
+
+	"device-name" : "foobar"
+}
+
+
+
