@@ -72,7 +72,8 @@ Accept: application/org.raumzeitlabor.benutzerdb-v1+json
 			"rel" : "presence"
 			"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
 			"href" : "presence/<id>/..."
-			},			
+			},
+    "nick" : "NICKNAME",
 		"firstname" : "FIRSTNAME",
 		"lastname" : "LASTNAME",
 		"email" : "email",
@@ -94,7 +95,7 @@ Accept: application/org.raumzeitlabor.benutzerdb-v1+json
 				"rel" : "add-mac"
 				"type" : "text/html"
 				"href" : "presence/mac"
-				},	
+				},
 			"mac" : {
 				"name" : foobar,
 				"mac" : "11:22:33:44:55:66",
@@ -102,7 +103,7 @@ Accept: application/org.raumzeitlabor.benutzerdb-v1+json
 					"rel" : "mac"
 					"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
 					"href" : "presence/mac/11-22-33-44-55-66"
-				}	
+				}
 			}
 		}
 	}
