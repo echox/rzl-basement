@@ -22,14 +22,8 @@
 
 
 (defn store-user [user]
-
-  (def obj (if-not (contains? user :_id)
-    (assoc user :_id (generate-id))
-             user))
-
-  (str obj)
-  (mc/insert (get-db) "users" obj)
-  obj
-)
-
-(store-user {:nickname "ewald" :firstname "Fi" :lastname "La" :email "foo@example.org" :contribution-receipt false})
+  (def user-with-id (if-not (contains? user :_id)
+              (assoc user :_id (generate-id))
+               user))
+  (mc/insert (get-db) "users" user-with-id)
+  user-with-id)
