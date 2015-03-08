@@ -27,6 +27,9 @@
     (assoc user :_id (generate-id))
              user))
 
-  (mc/update (get-db) "users" obj {:upsert true})
+  (str obj)
+  (mc/insert (get-db) "users" obj)
   obj
 )
+
+(store-user {:nickname "ewald" :firstname "Fi" :lastname "La" :email "foo@example.org" :contribution-receipt false})

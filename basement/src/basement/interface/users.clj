@@ -2,7 +2,8 @@
   (:require [basement.util.json :as json]
             [basement.api.users :as users]
             [hiccup.core]
-            [hiccup.form]))
+            [hiccup.form]
+            [ring.util.response :as ring]))
 
 (use 'hiccup.core)
 (use 'hiccup.form)
@@ -38,6 +39,6 @@
 (defn users-add-post [r]
   (let [params (r :params)]
     (let [id (str ((users/create-user params) :_id))]
-      id
+      (ring/redirect (str "/users/" id))
     )
   ))
