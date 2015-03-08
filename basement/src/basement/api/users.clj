@@ -24,3 +24,7 @@
     )
 
   )
+
+(defn delete-user [id]
+  (db/delete-user id)
+)

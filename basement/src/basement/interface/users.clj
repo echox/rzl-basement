@@ -7,7 +7,6 @@
 
 (use 'hiccup.core)
 (use 'hiccup.form)
-(use 'ring.util.anti-forgery)
 
 (defn users []
   {:usermanagement { :link (json/link "add" "text/html" "/users/add") } })
@@ -32,7 +31,6 @@
       (check-box "contribution-receipt" false)
 
       (submit-button "add")
-    (anti-forgery-field)
 
   ]))
 
@@ -42,3 +40,7 @@
       (ring/redirect (str "/users/" id))
     )
   ))
+
+(defn delete-user [id]
+  (users/delete-user id)
+)

@@ -6,7 +6,7 @@
             [basement.api.users]
             [basement.interface.users]
 
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
             [ring.util.response :refer [resource-response response]]
             [ring.util.response :as req]
             [ring.middleware.json :as middleware]))
@@ -25,13 +25,13 @@
   (GET "/users/add" [] basement.interface.users/users-add)
   (POST "/users/add" [] basement.interface.users/users-add-post)
   (GET "/users/:id" [id] (decorate (lookup-user id)))
+  (DELETE "/users/:id" [id] (basement.interface.users/delete-user id))
 	)
 
 (def basement
   (-> app-routes
     (middleware/wrap-json-response)
-    (wrap-defaults site-defaults)
-
+    (wrap-defaults api-defaults)
   )
 )
 
