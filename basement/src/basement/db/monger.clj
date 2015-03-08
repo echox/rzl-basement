@@ -11,6 +11,17 @@
 
 (defn get-db [] @db)
 
-(defn get-user [nick]
-  (mc/find-maps (get-db) "users" {:firstname "Martin"}))
+(defn generate-id [] (org.bson.types.ObjectId.))
+(defn str-to-id [str] (org.bson.types.ObjectId. str))
 
+(defn get-user-by-key [key value]
+  (mc/find-one-as-map (get-db) "users" {key value}))
+
+(defn get-user [id]
+  (mc/find-one-as-map (get-db) "users" {:_id (str-to-id id)}))
+
+
+(defn store-user [user]
+  (if-not (contains? user :_id)
+    (assoc user :_id (generate-id)))
+  (mc/update (get-db) "users" user {:upsert true}))

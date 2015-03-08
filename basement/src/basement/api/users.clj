@@ -1,4 +1,6 @@
-(ns basement.api.users)
+(ns basement.api.users
+  (:require [basement.db.monger :as db]
+            [basement.model.decorator]))
 
 (defn user [nick firstname lastname email contribution-receipt]
   {:nick nick
@@ -7,5 +9,5 @@
    :email email
    :contribution-receipt contribution-receipt})
 
-(defn lookup-user [userid]
-    (user userid "Martin" "Mustermann" "foo@example.org" false))
+(defn lookup-user [id]
+    (db/decorate-user (db/get-user id)))

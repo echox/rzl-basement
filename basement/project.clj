@@ -8,6 +8,7 @@
                  [ring/ring-defaults "0.1.2"]
                  [org.clojure/data.json "0.2.6"]
                  [ring/ring-json "0.3.1"]
+                 [com.novemberain/monger "2.0.0"]
                  ]
   :plugins [[lein-ring "0.8.13"]]
   :ring {:handler basement.handler/basement}
