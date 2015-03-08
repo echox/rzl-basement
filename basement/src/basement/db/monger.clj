@@ -22,6 +22,11 @@
 
 
 (defn store-user [user]
-  (if-not (contains? user :_id)
-    (assoc user :_id (generate-id)))
-  (mc/update (get-db) "users" user {:upsert true}))
+
+  (def obj (if-not (contains? user :_id)
+    (assoc user :_id (generate-id))
+             user))
+
+  (mc/update (get-db) "users" obj {:upsert true})
+  obj
+)

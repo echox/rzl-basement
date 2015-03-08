@@ -1,5 +1,6 @@
 (ns basement.interface.users
   (:require [basement.util.json :as json]
+            [basement.api.users :as users]
             [hiccup.core]
             [hiccup.form]))
 
@@ -33,3 +34,10 @@
     (anti-forgery-field)
 
   ]))
+
+(defn users-add-post [r]
+  (let [params (r :params)]
+    (let [id (str ((users/create-user params) :_id))]
+      id
+    )
+  ))

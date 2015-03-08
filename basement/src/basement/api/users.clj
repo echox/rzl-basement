@@ -3,7 +3,7 @@
             [basement.model.decorator :as decorator]))
 
 (defn user [nick firstname lastname email contribution-receipt]
-  {:nick nick
+  {:nickname nick
    :firstname firstname
    :lastname lastname
    :email email
@@ -11,3 +11,16 @@
 
 (defn lookup-user [id]
     (decorator/decorate-user (db/get-user id)))
+
+(defn create-user [userdata]
+  (let [nickname (userdata :nickname)
+        firstname (userdata :firstname)
+        lastname (userdata :lastname)
+        email (userdata :email)
+        contribution-receipt (userdata :contribution-receipt)]
+
+
+      (db/store-user (user nickname firstname lastname email contribution-receipt))
+    )
+
+  )

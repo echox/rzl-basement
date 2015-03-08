@@ -23,13 +23,14 @@
   (GET "/" [] "Hello World")
   (GET "/users" [] (decorate (basement.interface.users/users)))
   (GET "/users/add" [] basement.interface.users/users-add)
+  (POST "/users/add" [] basement.interface.users/users-add-post)
   (GET "/users/:id" [id] (decorate (lookup-user id)))
 	)
 
 (def basement
   (-> app-routes
     (middleware/wrap-json-response)
-    (wrap-defaults api-defaults)
+    (wrap-defaults site-defaults)
 
   )
 )
