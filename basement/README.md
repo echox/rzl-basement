@@ -28,17 +28,17 @@ It comes with a native lib, therefore the easiest way is to build it for yoursel
 Get it from https://github.com/Softmotions/ejdb-java
 
 After that, create a local maven repository and add it to the project with:
-1) mkdir maven_repository
-2) mvn deploy:deploy-file -Dfile=jejdb-1.0.2.jar -DartifactId=jejdb -Dversion=1.0.2 -DgroupId=jejdb -Dpackaging=jar -Durl=file:maven_repository
-3) Add to your project.clj:
-    :repositories {"local" "file:maven_repository"}
-4) lein deps
+1. mkdir maven_repository
+2. mvn deploy:deploy-file -Dfile=jejdb-1.0.2.jar -DartifactId=jejdb -Dversion=1.0.2 -DgroupId=jejdb -Dpackaging=jar -Durl=file:maven_repository
+3. Add to your project.clj:
+   :repositories {"local" "file:maven_repository"}
+4. lein deps
 
 The native library file should be in your java.library.path, check it with:
-    (System/getProperty "java.library.path")
+   (System/getProperty "java.library.path")
 
 After that you should be able to instantiate EJDB with:
-    (org.ejdb.driver.EJDB.)
+   (org.ejdb.driver.EJDB.)
 
 ## License
 
