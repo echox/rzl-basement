@@ -8,7 +8,10 @@
                  [ring/ring-defaults "0.1.2"]
                  [org.clojure/data.json "0.2.6"]
                  [ring/ring-json "0.3.1"]
+                 [ejdb "1.0.2"]
                  ]
+;;  :repositories {"local" "file:maven_repository"}
+;;  :native-path "/path/to/ejdb.so"
   :plugins [[lein-ring "0.8.13"]]
   :ring {:handler basement.handler/basement}
   :profiles
