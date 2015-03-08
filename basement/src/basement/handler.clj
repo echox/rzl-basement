@@ -4,6 +4,7 @@
             [compojure.handler :as handler]
 
             [basement.api.users]
+            [basement.interface.users]
 
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.util.response :refer [resource-response response]]
@@ -20,13 +21,16 @@
 
 (defroutes app-routes
   (GET "/" [] "Hello World")
+  (GET "/users" [] (decorate (basement.interface.users/users)))
+  (GET "/users/add" [] basement.interface.users/users-add)
   (GET "/users/:id" [id] (decorate (lookup-user id)))
 	)
 
 (def basement
   (-> app-routes
     (middleware/wrap-json-response)
-    (wrap-defaults site-defaults)
+    (wrap-defaults api-defaults)
 
   )
 )
+

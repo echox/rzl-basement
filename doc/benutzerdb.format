@@ -21,9 +21,23 @@ Accept: application/org.raumzeitlabor.benutzerdb-v1+json
 			"rel" : "search"
 			"type" : "text/html"
 			"href" : "users/search"
+		},
+		"link" : {
+			"rel" : "add"
+			"type" : "text/html"
+			"href" : "users/add"
 		}
 	}
 }
+
+/users/add
+<form action="" method="POST" name="user-add">
+	<input type="text" name="nickname">
+  <input type="text" name="firstname">
+  <input type="text" name="lastname">
+  <input type="text" name="email">
+	<input type="checkbox" name="contribution-receipt" value="contribution-receipt">
+</form>
 
 /users/search
 <form action="" method="POST" name="user-search">

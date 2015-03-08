@@ -1,13 +1,8 @@
 (ns basement.model.decorator
-  (:require [basement.api.users]))
-
-(defn link [rel type href]
-  {:rel rel
-   :type type
-   :href href})
+  (:require [basement.util.json :as json]))
 
 (defn add-self [user]
-  (assoc user :link (link "self"
+  (assoc user :link (json/link "self"
                           "application/org.raumzeitlabor.benutzerdb-v1+json"
                           (str "users/" (user :_id)))))
 
