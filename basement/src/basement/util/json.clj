@@ -1,6 +1,13 @@
 (ns basement.util.json)
 
-(defn link [rel type href]
-  {:rel rel
+(defn link [rel type href & method]
+   (let [map
+   {:rel rel
    :type type
-   :href href})
+   :href href}]
+
+     (if-not (= method nil)
+       (assoc map :method (first method))
+       map
+       )
+    ))
