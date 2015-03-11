@@ -14,6 +14,8 @@ To start a web server for the application, run:
 
     lein ring server
 
+MongoDB should be running on localhost:
+
 ## Developing
 
 You can start your ring webserver inside your IDEs REPL with:
