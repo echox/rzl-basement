@@ -29,7 +29,4 @@
   user-with-id)
 
 (defn delete-user [id]
-  (str (mc/remove-by-id (get-db) "users" (str-to-id id)))
-  )
-
-(delete-user "54fc9fe9d4c68203e68a41c5")
+  (str (mc/remove-by-id (get-db) "users" (str-to-id id))))
