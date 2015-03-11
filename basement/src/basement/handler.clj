@@ -5,7 +5,9 @@
 
             [basement.api.users]
             [basement.interface.users]
+            [basement.interface.index]
 
+            [basement.middleware.prefixHost :as prefix-host]
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
             [ring.util.response :refer [resource-response response]]
             [ring.util.response :as req]
@@ -20,18 +22,19 @@
 )
 
 (defroutes app-routes
-  (GET "/" [] "Hello World")
-  (GET "/users" [] (decorate (basement.interface.users/users)))
+  (GET "/" [] (decorate (basement.interface.index/index)))
+  (GET "/users/" [] (decorate (basement.interface.users/users)))
   (GET "/users/add" [] basement.interface.users/users-add)
   (POST "/users/add" [] basement.interface.users/users-add-post)
   (GET "/users/:id" [id] (decorate (lookup-user id)))
   (DELETE "/users/:id" [id] (basement.interface.users/delete-user id))
+  (GET "/hello" [] "Good day fellow!")
 	)
 
 (def basement
   (-> app-routes
+    (prefix-host/prefixHost)
     (middleware/wrap-json-response)
     (wrap-defaults api-defaults)
-  )
-)
+  ))
 
