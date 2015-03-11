@@ -1,0 +1,6 @@
+__ NOW __
+
+__ LATER __
+* [db] connection pooling
+* [db] configurable credentials and connection
+* [db] error handling if database is not reachable
