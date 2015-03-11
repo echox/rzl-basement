@@ -9,7 +9,8 @@
 (use 'hiccup.form)
 
 (defn users []
-  {:usermanagement { :link (json/link "add" "text/html" "/users/add") } })
+  {:usermanagement { :link [(json/link "add" "text/html" "/users/add")
+                           (json/link "search" "text/html" "/users/search") ]}})
 
 (defn users-add [r]
 (html
@@ -31,7 +32,6 @@
       (check-box "contribution-receipt" false)
 
       (submit-button "add")
-
   ]))
 
 (defn users-add-post [r]
