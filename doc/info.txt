@@ -1,0 +1,18 @@
+This is a lose collection of information about the service
+
+Service Description
+An application using the service should be written as dynamicly as possible and
+present the state expressed by the service interface itself.
+The service itself should be used to discover available functionality. The
+discovered URIs can be cached but must not be hardcoded inside the application.
+
+Content Type
+The content type of the service is either
+application/org.raumzeitlabor.benutzerdb-v1+json or text/html
+
+Links
+Links to functionality are encoded in a link map { rel type href [method] }
+	rel - describes the functionality
+	type - the content type
+	href - the link to the URL
+	[method] - verb used with the URL, default is GET and can be omitted
