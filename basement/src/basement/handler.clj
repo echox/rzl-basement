@@ -54,12 +54,9 @@
   (GET "/users/" [] (decorate (basement.interface.users/users)))
   (GET "/users/add" [] basement.interface.users/users-add)
   (POST "/users/add" [] basement.interface.users/users-add-post)
-  (GET "/users/:id" [id] (decorate (lookup-user id)))
-  (GET "/userstest/:id" [id] (decorate-vcard (transform-vcard (lookup-user id))))
+  (GET "/users/:id" [id] (negotiator multicontent-user))
   (DELETE "/users/:id" [id] (basement.interface.users/delete-user id))
-  (GET "/hello" [] "Good day fellow!")
-  (GET "/test/:id" [id] (negotiator multicontent-user))
-	)
+  (GET "/hello" [] "Good day fellow!"))
 )
 
 (def basement
