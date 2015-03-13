@@ -12,19 +12,13 @@
 (defn lookup-user [id]
     (decorator/decorate-user (db/get-user id)))
 
-(defn create-user [userdata]
-  (let [nickname (userdata :nickname)
-        firstname (userdata :firstname)
-        lastname (userdata :lastname)
-        email (userdata :email)
-        contribution-receipt (userdata :contribution-receipt)]
+(defn create-user [{nickname :nickname
+                    firstname :firstname
+                    lastname :lastname
+                    email :email
+                    contribution-receipt :contribution-receipt}]
 
-
-      (db/store-user (user nickname firstname lastname email contribution-receipt))
-    )
-
-  )
+      (db/store-user (user nickname firstname lastname email contribution-receipt)))
 
 (defn delete-user [id]
-  (db/delete-user id)
-)
+  (db/delete-user id))

@@ -34,12 +34,9 @@
       (submit-button "add")
   ]))
 
-(defn users-add-post [r]
-  (let [params (r :params)]
-    (let [id (str ((users/create-user params) :_id))]
-      (ring/redirect (str "/users/" id))
-    )
-  ))
+(defn users-add-post [{params :params}]
+  (let [id (str ((users/create-user params) :_id))]
+      (ring/redirect (str "/users/" id))))
 
 (defn delete-user [id]
   (users/delete-user id)
