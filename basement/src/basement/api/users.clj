@@ -16,7 +16,7 @@
                     firstname :firstname
                     lastname :lastname
                     email :email
-                    contribution-receipt :contribution-receipt}]
+                    contribution-receipt :contribution-receipt :or {contribution-receipt false}}]
 
       (db/store-user (user nickname firstname lastname email contribution-receipt)))
 
