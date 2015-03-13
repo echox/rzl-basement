@@ -47,7 +47,7 @@
     )))
 
 (let [multicontent-user {:default (fn[{{id :id}:params}] (decorate (lookup-user id)))
-                         "text/vcard"  (fn[{{id :id}:params}] (decorate-vcard (transform-vcard (lookup-user id)))))} ]
+                         "text/vcard"  (fn[{{id :id}:params}] (decorate-vcard (transform-vcard (lookup-user id))))} ]
 
 (defroutes app-routes
   (GET "/" [] (decorate (basement.interface.index/index)))
