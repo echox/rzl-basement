@@ -22,7 +22,7 @@
              "DELETE"))
 
 (defn convert-id [object]
-  (assoc object :_id (str (object :_id))))
+ (clojure.set/rename-keys (assoc object :_id (str (object :_id)))  {:_id :id}))
 
 (defn add-links [user]
   (assoc user
