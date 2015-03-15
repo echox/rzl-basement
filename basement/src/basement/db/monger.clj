@@ -1,5 +1,6 @@
 (ns basement.db.monger
  (:require [monger.core :as mg]
+           [monger.operators :refer :all]
             [monger.collection :as mc]))
 
 (defn db-connection []
@@ -30,3 +31,11 @@
 
 (defn delete-user [id]
   (str (mc/remove-by-id (get-db) "users" (str-to-id id))))
+
+(defn remove-empty [map]
+  (into {} (remove (comp (fn [e] (= "" e)) second) map)))
+
+(defn search-user [attributes]
+(let [params (remove-empty attributes)
+      querymap (reduce (fn [in [k v]] (assoc in k {$regex v})) {} params)]
+  (mc/find-maps (get-db) "users" querymap)))

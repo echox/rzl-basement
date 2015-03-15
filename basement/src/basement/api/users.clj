@@ -12,6 +12,9 @@
 (defn lookup-user [id]
     (decorator/decorate-user (db/get-user id)))
 
+(defn search[params]
+  (db/search-user params))
+
 (defn create-user [{nickname :nickname
                     firstname :firstname
                     lastname :lastname

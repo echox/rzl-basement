@@ -54,6 +54,8 @@
   (GET "/users/" [] (decorate (basement.interface.users/users)))
   (GET "/users/add" [] basement.interface.users/users-add)
   (POST "/users/add" [] basement.interface.users/users-add-post)
+  (GET "/users/search" [] basement.interface.users/users-search)
+  (POST "/users/search"  {params :params} (decorate (basement.interface.users/users-search-post params)))
   (GET "/users/:id" [id] (negotiator multicontent-user))
   (DELETE "/users/:id" [id] (basement.interface.users/delete-user id))
   (GET "/hello" [] "Good day fellow!"))
