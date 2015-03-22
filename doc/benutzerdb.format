@@ -83,6 +83,12 @@ Accept: application/org.raumzeitlabor.benutzerdb-v1+json
 			"href" : "pin/<id>/"
 			},
 		"link" : {
+			"rel" : "reset-pin"
+      "methode" : "POST"
+			"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
+			"href" : "pin/<id>/"
+			},
+		"link" : {
 			"rel" : "presence"
 			"type" : "application/org.raumzeitlabor.benutzerdb-v1+json"
 			"href" : "presence/<id>/..."

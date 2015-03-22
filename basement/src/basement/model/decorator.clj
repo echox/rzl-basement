@@ -2,8 +2,10 @@
   (:require [basement.util.json :as json]))
 
 (defn uri-self [user]
-  (str "/users/" (user :_id))
-  )
+  (str "/users/" (user :_id)))
+
+(defn uri-pin [user]
+  (str "/pin/" (user :_id)))
 
 (defn add-self [user]
   (json/link "self"
@@ -24,6 +26,17 @@
 (defn convert-id [object]
  (clojure.set/rename-keys (assoc object :_id (str (object :_id)))  {:_id :id}))
 
+(defn remove-pin [user]
+  (dissoc user :pin))
+
+(defn convert-pin [user]
+  (if (not (nil? (:pin user)))
+    (let [pin (:pin user)
+          links (:link user)]
+      (remove-pin (assoc user :link (conj links
+                              (json/link "pin" "application/org.raumzeitlabor.benutzerdb-v1+json" (uri-pin user))))))
+    user))
+
 (defn add-links [user]
   (assoc user
   :link
@@ -35,5 +48,6 @@
   (if-not (empty? user)
     (->> user
         (add-links)
+        (convert-pin)
         (convert-id)
          )))
